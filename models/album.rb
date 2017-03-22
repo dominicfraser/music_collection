@@ -12,11 +12,19 @@ class Album
     @genre = album_hash['genre']
   end
 
+### CLASS
   def self.all()
     sql = "SELECT * FROM albums"
     result = SqlRunner.run(sql)
     return result.map{|album| Album.new(album)}
   end
+
+### INSTANCE
+  def save
+    sql = "INSERT INTO artists (name) VALUES ('#{@name}') RETURNING *"
+    result = SqlRunner.run(sql)
+    @id = result.first['id'].to_i
+  end  
 
 
 
