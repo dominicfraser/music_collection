@@ -3,6 +3,7 @@ require_relative('../db/sql_runner')
 
 class Artist
 
+  attr_reader :id, :name
   attr_writer :name
 
   def initialize(artist_hash)
@@ -16,13 +17,20 @@ class Artist
     result = SqlRunner.run(sql)
     return result.map{|artist| Artist.new(artist)}
   end
-  
+
 ### INSTANCE
   def save
     sql = "INSERT INTO artists (name) VALUES ('#{@name}') RETURNING *"
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end  
+
+  def albums
+    sql = "SELECT * FROM albums WHERE artist_id = #{@id}"
+    result = SqlRunner.run(sql)
+    return result.map {|album| Album.new(album)}
+  end
+
 
 
 
