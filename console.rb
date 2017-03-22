@@ -13,9 +13,14 @@ album6 = Album.new({
   })
 
 album6.save
-album6.delete
+# album6.delete
 
-artist5.delete
+# artist5.delete
+
+artist5.name = 'Jake'
+artist5.update
+
+
 
 binding.pry
 nil

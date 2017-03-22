@@ -19,23 +19,27 @@ class Artist
   end
 
 ### INSTANCE
-  def save
+  def save()
     sql = "INSERT INTO artists (name) VALUES ('#{@name}') RETURNING *"
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end  
 
-  def albums
+  def albums()
     sql = "SELECT * FROM albums WHERE artist_id = #{@id}"
     result = SqlRunner.run(sql)
     return result.map {|album| Album.new(album)}
   end
 
-  def delete
+  def delete()
     sql = "DELETE FROM artists WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
 
+  def update()
+    sql = "UPDATE artists SET (name) = ('#{@name}') WHERE id = #{@id}"
+    SqlRunner.run(sql)
+  end
 
 
 
