@@ -12,6 +12,12 @@ class Album
     @genre = album_hash['genre']
   end
 
+  def self.all()
+    sql = "SELECT * FROM albums"
+    result = SqlRunner.run(sql)
+    return result.map{|album| Album.new(album)}
+  end
+
 
 
 
