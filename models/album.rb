@@ -27,7 +27,11 @@ class Album
     @id = result.first['id'].to_i
   end  
 
-
+  def artist
+    sql = "SELECT * FROM albums WHERE id = #{@artist_id}"
+    result = SqlRunner.run(sql)
+    return Album.new(result.first)
+  end
 
 
 
