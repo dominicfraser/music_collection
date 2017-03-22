@@ -20,6 +20,9 @@ album6.save
 artist5.name = 'Jake'
 artist5.update
 
+album6.title = 'Bob Bob'
+album6.update
+
 
 
 binding.pry
