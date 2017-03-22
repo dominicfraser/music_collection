@@ -13,7 +13,9 @@ album6 = Album.new({
   })
 
 album6.save
+album6.delete
 
+artist5.delete
 
 binding.pry
 nil
