@@ -18,6 +18,12 @@ class Artist
     return result.map{|artist| Artist.new(artist)}
   end
 
+  def self.find_artist_by_id(input_id)
+    sql = "SELECT * FROM artists WHERE id = #{input_id}"
+    result = SqlRunner.run(sql)
+    return Artist.new(result.first)
+  end
+
 ### INSTANCE
   def save()
     sql = "INSERT INTO artists (name) VALUES ('#{@name}') RETURNING *"
@@ -40,8 +46,6 @@ class Artist
     sql = "UPDATE artists SET (name) = ('#{@name}') WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
-
-
 
 
 
